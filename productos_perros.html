@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="products">
+    <h1>Productos para perros</h1>
+    <div class="product-list">
+        {% for producto in productos %}
+        <div class="product">
+            <img src="/static/uploads/{{ producto.imagen }}" alt="{{ producto.nombre }}">
+            <p>{{ producto.nombre }}</p>
+            <p class="price">${{ producto.precio }}</p>
+            <form method="POST" action="{{ url_for('add_to_cart', categoria='perros', index=loop.index0) }}">
+                <button type="submit">Agregar a la Cesta</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
